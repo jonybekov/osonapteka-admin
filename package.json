@@ -1,8 +1,11 @@
 {
-  "name": "my-app",
+  "name": "osonapteka-admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-transform-spread": "^7.11.0",
+    "@craco/craco": "^5.7.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -10,7 +13,9 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
     "antd": "^4.6.6",
+    "craco-less": "^1.17.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -20,15 +25,21 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "npm run watch:css && craco start",
+    "build": "npm run build:css && craco build",
+    "test": "craco test",
+    "eject": "craco eject",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-spread",
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
   },
   "browserslist": {
     "production": [
@@ -43,6 +54,8 @@
     ]
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.9",
+    "@types/redux": "^3.6.0",
     "autoprefixer": "9.8.6",
     "postcss-cli": "^8.0.0",
     "tailwindcss": "^1.8.10"
