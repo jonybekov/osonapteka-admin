@@ -15,6 +15,7 @@ module.exports = {
               "@menu-item-vertical-margin": "4px",
               "@input-padding-vertical-base": "4px",
               "@select-dropdown-vertical-padding": "4px",
+              "@select-dropdown-height": "35px",
             },
             javascriptEnabled: true,
           },

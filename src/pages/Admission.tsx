@@ -24,6 +24,7 @@ import {
 import "moment/locale/ru";
 import locale from "antd/es/locale/ru_RU";
 import IconBtn from "../components/IconBtn";
+import { useHistory } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -135,7 +136,7 @@ const tailLayout = {
 
 export default function Admission() {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
+  const history = useHistory();
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -216,6 +217,9 @@ export default function Admission() {
           dataSource={dataSource}
           columns={columns}
           size='middle'
+          onRow={() => ({
+            onClick: () => history.push("/goods-arrival"),
+          })}
           className='customized-table'
         />
         ;

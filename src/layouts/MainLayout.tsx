@@ -1,31 +1,10 @@
 import React from "react";
 import SideMenu from "../components/SideMenu";
-import { Dropdown, Layout, Menu } from "antd";
-import {
-  DownOutlined,
-  UserOutlined,
-  LockOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
-import Avatar from "antd/lib/avatar/avatar";
+import { Layout } from "antd";
 import { Route } from "react-router-dom";
+import TopHeader from "../components/TopHeader";
 
-const { Header, Content } = Layout;
-
-const userMenu = [
-  {
-    text: "Мой профиль",
-    icon: <UserOutlined />,
-  },
-  {
-    text: "Блокировать",
-    icon: <LockOutlined />,
-  },
-  {
-    text: "Выйти",
-    icon: <LogoutOutlined />,
-  },
-];
+const { Content } = Layout;
 
 interface MainLayoutProps {
   title: string;
@@ -50,35 +29,11 @@ export const MainLayoutRoutes = ({
 };
 
 export default function MainLayout({ title, children }: MainLayoutProps) {
-  const menu = (
-    <Menu>
-      {userMenu.map((item, i) => (
-        <Menu.Item key={i} icon={item.icon}>
-          <a className='text-sm'>
-            {/* <span>{item.icon}</span> */}
-            {item.text}
-          </a>
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
-
   return (
     <Layout>
       <SideMenu />
       <Layout>
-        <Header className='bg-white px-4 h-12 flex justify-between items-center leading-none shadow'>
-          <h2>{title}</h2>
-          <div>
-            <Dropdown overlay={menu}>
-              <div className='ant-dropdown-link flex items-center cursor-pointer text-sm'>
-                <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-                <span className='mr-2 ml-1'>Azizbek</span>
-                <DownOutlined />
-              </div>
-            </Dropdown>
-          </div>
-        </Header>
+        <TopHeader title={title} />
         <Content className='p-4'>{children}</Content>
       </Layout>
       {/* <Tabs

@@ -34,7 +34,7 @@ const menuItems = [
   {
     label: "Инвентаризация",
     icon: <AppstoreOutlined />,
-    to: "/",
+    to: "/inventory",
   },
   {
     label: "Деффектура",
@@ -44,7 +44,7 @@ const menuItems = [
   {
     label: "Переоценка",
     icon: <StarOutlined />,
-    to: "/",
+    to: "/revaluation",
   },
   {
     label: "Карта покупателей",

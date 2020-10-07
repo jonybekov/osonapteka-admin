@@ -16,6 +16,19 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "TT Norms";
+  src: url("./fonts/TTNorms/TTNorms-Regular.eot");
+  src: local("./fonts/TTNorms/TT Norms Regular"),
+    local("./fonts/TTNorms/TTNorms-Regular"),
+    url("./fonts/TTNorms/TTNorms-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/TTNorms/TTNorms-Regular.woff") format("woff"),
+    url("./fonts/TTNorms/TTNorms-Regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
 body {
   font-family: "TT Norms" !important;
 }
@@ -43,6 +56,12 @@ svg {
   border-right: 0 !important;
 }
 
+.ant-table-thead > tr > th {
+  background: #f0f2f5;
+  color: #74788d;
+  font-size: 12px;
+}
+
 .customized-table .ant-table-thead > tr > th {
   background: #f0f2f5;
   color: #74788d;
@@ -57,4 +76,41 @@ svg {
 .icon-btn svg {
   font-size: 20px;
   font-weight: bold;
+}
+
+.compact-form .ant-form-item {
+  margin-bottom: 0px;
+}
+
+.compact-form label {
+  font-size: 12px;
+  font-weight: 300;
+  color: #74788d;
+}
+
+.compact-form .ant-form-item-label {
+  padding-bottom: 0px;
+}
+
+.compact-form .ant-input-group-addon {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.virtual-table .ant-table-container:before,
+.virtual-table .ant-table-container:after {
+  display: none;
+}
+.virtual-table-cell {
+  box-sizing: border-box;
+  padding: 8px 9px;
+  font-size: 14px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+}
+[data-theme="dark"] .virtual-table-cell {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-bottom: 1px solid #303030;
+  background: #141414;
 }
