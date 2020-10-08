@@ -19149,6 +19149,10 @@ svg {
   background: #141414;
 }
 
+.green-switch.ant-switch-checked {
+  background-color: #34c38f;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

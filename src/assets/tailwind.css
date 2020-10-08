@@ -114,3 +114,7 @@ svg {
   border-bottom: 1px solid #303030;
   background: #141414;
 }
+
+.green-switch.ant-switch-checked {
+  background-color: #34c38f;
+}

@@ -3,16 +3,21 @@ import { VariableSizeGrid as Grid } from "react-window";
 import classNames from "classnames";
 import { Table } from "antd";
 import ResizeObserver from "rc-resize-observer";
+// import AutoSizer from "react-virtualized-auto-sizer";
+
+interface VirtualTableProps {
+  actions?: any;
+}
 
 export default function VirtualTable(props: any) {
-  const { columns, scroll } = props;
+  const { columns, scroll, actions } = props;
   const [tableWidth, setTableWidth] = useState<number>(0);
 
   const widthColumnCount = columns.filter(
     ({ width }: { width: string }) => !width
   ).length;
 
-  const mergedColumns: any = columns.map((column: any): any => {
+  const mergedColumns: any = columns.map((column: any) => {
     if (column.width) {
       return column;
     }
@@ -20,6 +25,7 @@ export default function VirtualTable(props: any) {
     return {
       ...column,
       width: Math.floor(tableWidth / widthColumnCount),
+      // width: 300,
     };
   });
 
@@ -47,14 +53,31 @@ export default function VirtualTable(props: any) {
 
   useEffect(() => resetVirtualGrid, [tableWidth]);
 
+  const renderHeaderCell = (props: any) => {
+    console.log("header props", props);
+
+    return <th className={props.className}>{props.children[1]}</th>;
+  };
+
+  const renderHeaderWrapper = (props: any) => {
+    console.log("header wrapper props", props);
+    const { flattenColumns } = props.children[0].props;
+
+    return (
+      <tr className=''>
+        {flattenColumns.map((col: any) => (
+          <th style={{ width: col.width }}>{col.title}</th>
+        ))}
+      </tr>
+    );
+  };
+
   const renderVirtualList = function (
     rawData: any,
     { scrollbarSize, ref, onScroll }: any
   ) {
     ref.current = connectObject;
     const totalHeight = rawData.length * 54;
-
-    console.log("arguments", arguments);
 
     return (
       <Grid
@@ -82,6 +105,10 @@ export default function VirtualTable(props: any) {
             })}
             style={style}>
             {rawData[rowIndex][mergedColumns[columnIndex].dataIndex]}
+            {/* Row actions */}
+            {mergedColumns[columnIndex].dataIndex === "action" && actions
+              ? actions.render(rawData[rowIndex])
+              : null}
           </div>
         )}
       </Grid>
@@ -89,6 +116,8 @@ export default function VirtualTable(props: any) {
   };
 
   return (
+    // <AutoSizer>
+    //   {({ aWidth, aHeight }: any) => (
     <ResizeObserver
       onResize={({ width }) => {
         setTableWidth(width);
@@ -98,11 +127,16 @@ export default function VirtualTable(props: any) {
         className='virtual-table'
         columns={mergedColumns}
         pagination={false}
-        width={200}
         components={{
+          header: {
+            // wrapper: renderHeaderWrapper,
+            cell: renderHeaderCell,
+          },
           body: renderVirtualList,
         }}
       />
     </ResizeObserver>
+    //   )}
+    // </AutoSizer>
   );
 }

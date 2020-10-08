@@ -10,6 +10,7 @@ import {
   StarOutlined,
   CreditCardOutlined,
   MenuOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -20,66 +21,79 @@ const menuItems = [
     label: "Главная",
     icon: <HomeOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Поступление",
     icon: <PlusSquareOutlined />,
     to: "/admission",
+    disabled: false,
   },
   {
     label: "Бронирование",
     icon: <CalendarOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Инвентаризация",
     icon: <AppstoreOutlined />,
     to: "/inventory",
+    disabled: false,
   },
   {
     label: "Деффектура",
     icon: <MehOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Переоценка",
     icon: <StarOutlined />,
     to: "/revaluation",
+    disabled: false,
   },
   {
     label: "Карта покупателей",
     icon: <CreditCardOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Списание товаров",
     icon: <MailOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Список должников",
     icon: <MailOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Отчеты",
     icon: <MailOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Справочные таблицы",
     icon: <MailOutlined />,
     to: "/",
+    disabled: true,
   },
   {
     label: "Настройки",
-    icon: <MailOutlined />,
-    to: "/",
+    icon: <SettingOutlined />,
+    to: "/settings",
+    disabled: false,
   },
   {
     label: "Помощь",
     icon: <MailOutlined />,
     to: "/",
+    disabled: true,
   },
 ];
 
@@ -109,8 +123,8 @@ const SideMenu = () => {
         </div>
 
         <Menu style={{ width: isCollapsed ? 46 : 256 }} mode={"vertical"}>
-          {menuItems.map(({ label, icon, to }, i) => (
-            <Menu.Item key={i + 1} icon={icon}>
+          {menuItems.map(({ label, icon, to, disabled }, i) => (
+            <Menu.Item key={i + 1} icon={icon} disabled={disabled}>
               <Link to={to}>{label}</Link>
             </Menu.Item>
           ))}
