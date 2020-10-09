@@ -19153,6 +19153,20 @@ svg {
   background-color: #34c38f;
 }
 
+.customized-table .ant-table-tbody > tr > td {
+  border-bottom-width: 8px;
+}
+
+.big-table .ant-table-tbody {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.column-text-bold-2 .ant-table-tbody > tr > td:nth-child(2) {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

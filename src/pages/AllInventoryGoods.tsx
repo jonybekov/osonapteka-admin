@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Col,
-  Descriptions,
-  Input,
-  Layout,
-  Modal,
-  Row,
-  Table,
-} from "antd";
+import { Col, Input, Layout, Modal, Row, Table } from "antd";
 import TopHeader from "../components/TopHeader";
 import VirtualTable from "../components/VirtualTable";
-import IconBtn from "../components/IconBtn";
 import { EditOutlined } from "@ant-design/icons";
+import IconBtn from "../components/IconBtn";
 const { Content } = Layout;
 
 interface Product {
@@ -27,44 +18,26 @@ interface Product {
   amount: number;
 }
 
-const columns = [
+const columns1 = [
   {
     title: "№",
-    dataIndex: "key",
-    width: 30,
+    dataIndex: "id",
+    width: 50,
   },
-  { title: "Название товара", dataIndex: "name", width: 200 },
+  { title: "Название товара", dataIndex: "productName", width: 300 },
   { title: "Производитель", dataIndex: "manufacturer", width: 200 },
-  { title: "Штрих код", dataIndex: "barcode", width: 130 },
-  { title: "Дата приход", dataIndex: "arrivalDate", width: 80 },
-  { title: "Прод цена", dataIndex: "salePrice", width: 90 },
-  { title: "Срок годности", dataIndex: "expiringDate", width: 90 },
-  { title: "В пачке", dataIndex: "packVolumne", width: 120 },
-  { title: "Кол-во", dataIndex: "amount", width: 60 },
+  { title: "Штрих код", dataIndex: "barcode", width: 125 },
+  { title: "Дата приход", dataIndex: "arrivalDate", width: 125 },
+  { title: "Прод цена", dataIndex: "salePrice", width: 100 },
+  { title: "Срок годности", dataIndex: "expiringDate", width: 125 },
+  { title: "В пачке", dataIndex: "packVolume", width: 85 },
+  { title: "Кол-во", dataIndex: "amount", width: 90 },
   {
     title: "Действие",
-    dataIndex: "action",
-    key: "action",
-    width: 120,
+    dataIndex: "actions",
+    width: 100,
   },
 ];
-
-const data = Array.from({ length: 100000 }, (_, key) => ({
-  key,
-  name: "Азимакс mr сусп. 200мг/5мл 30мл",
-  manufacturer: "Uz-Korea Mediacal",
-  barcode: Math.floor(Math.random() * 10000000 + 100000),
-  basePrice: Math.floor(Math.random() * 10000000 + 100000),
-  price: Math.floor(Math.random() * 10000000 + 100000),
-  extraPrice: Math.round(Math.random() * 20),
-  amount: Math.floor(Math.random() * 19 + 1) + " уп",
-  salePrice: Math.floor(Math.random() * 10000000 + 100000),
-  expiringDate:
-    Math.floor(Math.random() * 30 + 1) +
-    "." +
-    Math.floor(Math.random() * 11 + 1) +
-    ".2020",
-}));
 
 const columns2 = [
   { title: "Сколько", dataIndex: "howMuch" },
@@ -162,6 +135,20 @@ export default function AllInventoryGoods() {
     setEditableRow(row);
   };
 
+  const [rows] = useState(
+    Array.from({ length: 100 }, (_, key) => ({
+      id: key,
+      productName: "Азимакс mr сусп. 200мг/5мл 30мл",
+      manufacturer: "Uz-Korea Mediacal",
+      barcode: 12412412412,
+      arrivalDate: "14.06.2020",
+      salePrice: 12412412,
+      expiringDate: "20.02.2020",
+      packVolume: 20,
+      amount: 124 + " уп",
+    }))
+  );
+
   return (
     <div>
       <Modal
@@ -176,25 +163,14 @@ export default function AllInventoryGoods() {
         {editableRow ? <ModalContent data={editableRow} /> : "Loading"}
       </Modal>
       <Layout>
-        <TopHeader title='Приход товаров' backButton />
+        <TopHeader title='Список инвентаризованных товаров' backButton />
         <Content className='p-4'>
           <div className='p-4 bg-white shadow'>
             <VirtualTable
-              columns={columns}
-              dataSource={data}
-              scroll={{ y: 510, x: "100vw" }}
               size='small'
-              actions={{
-                render: (row: Product) => (
-                  <div>
-                    <IconBtn
-                      color='primary'
-                      icon={EditOutlined}
-                      clickHandler={() => onEdit(row)}
-                    />
-                  </div>
-                ),
-              }}
+              dataSource={rows}
+              columns={columns1}
+              scroll={{ y: 510, x: "100vw" }}
             />
           </div>
         </Content>

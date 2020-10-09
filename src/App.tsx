@@ -10,6 +10,9 @@ import AllInventoryGoods from "./pages/AllInventoryGoods";
 import Settings from "./pages/Settings";
 import CashiersManagement from "./pages/CashiersManagement";
 import CashierDetails from "./pages/CashierDetails";
+import RevaluationDetails from "./pages/RevaluationDetails";
+import Login from "./pages/Login";
+import LockScreen from "./pages/LockScreen";
 // const GoodsArrival = React.lazy(() => import("./pages/GoodsArrival"));
 // const Inventory = React.lazy(() => import("./pages/Inventory"));
 // const Revaluation = React.lazy(() => import("./pages/Revaluation"));
@@ -65,6 +68,15 @@ function App() {
         </Route>
         <Route exact path='/all-inventory-goods'>
           <AllInventoryGoods />
+        </Route>
+        <Route exact path='/revaluation/:id'>
+          <RevaluationDetails />
+        </Route>
+        <Route exact path='/locked'>
+          <LockScreen />
+        </Route>
+        <Route exact path='/login'>
+          <Login />
         </Route>
       </Switch>
     </Router>

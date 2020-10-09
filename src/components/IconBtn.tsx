@@ -27,9 +27,9 @@ export default function IconBtn({
         onClick={clickHandler ? clickHandler : () => {}}
         {...rest}>
         {React.createElement(icon, {
-          className: `${backgroundColor} ${
-            disabled ? "text-gray-500 cursor-not-allowed" : ""
-          }`,
+          className: disabled
+            ? "text-gray-500 cursor-not-allowed"
+            : backgroundColor,
         })}
       </div>
     </Tooltip>
