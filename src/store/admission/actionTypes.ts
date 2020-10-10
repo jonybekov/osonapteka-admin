@@ -1,0 +1,1 @@
+export const ADD_ADMISSION = 'ADD_ADMISSION'

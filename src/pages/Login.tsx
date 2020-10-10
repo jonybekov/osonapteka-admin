@@ -3,6 +3,7 @@ import React from "react";
 import bg from "../assets/bg.jpg";
 
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const layout = {
   labelCol: { span: 8 },
@@ -60,13 +61,15 @@ export default function Login() {
               </Form.Item>
 
               <Form.Item>
-                <Button
-                  type='primary'
-                  block
-                  htmlType='submit'
-                  className='login-form-button'>
-                  Войти
-                </Button>
+                <Link to='/admission'>
+                  <Button
+                    type='primary'
+                    block
+                    htmlType='submit'
+                    className='login-form-button'>
+                    Войти
+                  </Button>
+                </Link>
               </Form.Item>
             </Form>
           </div>

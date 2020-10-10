@@ -19047,6 +19047,22 @@ video {
 @font-face {
   font-family: "TT Norms";
 
+  src: url("./fonts/TTNorms/TTNorms-Bold.eot");
+
+  src: local("./fonts/TTNorms/TT Norms Bold"),
+    local("./fonts/TTNorms/TTNorms-Bold"),
+    url("./fonts/TTNorms/TTNorms-Bold.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/TTNorms/TTNorms-Bold.woff") format("woff"),
+    url("./fonts/TTNorms/TTNorms-Bold.ttf") format("truetype");
+
+  font-weight: 700;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TT Norms";
+
   src: url("./fonts/TTNorms/TTNorms-Regular.eot");
 
   src: local("./fonts/TTNorms/TT Norms Regular"),
@@ -19071,6 +19087,7 @@ svg {
 
 .ant-menu-inline-collapsed > .ant-menu-item {
   padding: 0 15px;
+  font-size: 14px;
 }
 
 .ant-btn {
@@ -19165,6 +19182,10 @@ svg {
 .column-text-bold-2 .ant-table-tbody > tr > td:nth-child(2) {
   text-transform: uppercase;
   font-weight: normal;
+}
+
+.ant-input {
+  font-weight: 300;
 }
 
 @media (min-width: 640px) {

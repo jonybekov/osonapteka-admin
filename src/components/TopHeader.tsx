@@ -61,7 +61,7 @@ export default function TopHeader({ title, backButton }: TopHeaderProps) {
               <LeftOutlined />
             </a>
           )}
-          <h2 className=''>{title}</h2>
+          <h2 className='font-bold'>{title}</h2>
         </div>
       </div>
       <div>

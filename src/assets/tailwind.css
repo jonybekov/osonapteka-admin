@@ -18,6 +18,18 @@
 
 @font-face {
   font-family: "TT Norms";
+  src: url("./fonts/TTNorms/TTNorms-Bold.eot");
+  src: local("./fonts/TTNorms/TT Norms Bold"),
+    local("./fonts/TTNorms/TTNorms-Bold"),
+    url("./fonts/TTNorms/TTNorms-Bold.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/TTNorms/TTNorms-Bold.woff") format("woff"),
+    url("./fonts/TTNorms/TTNorms-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TT Norms";
   src: url("./fonts/TTNorms/TTNorms-Regular.eot");
   src: local("./fonts/TTNorms/TT Norms Regular"),
     local("./fonts/TTNorms/TTNorms-Regular"),
@@ -39,6 +51,7 @@ svg {
 
 .ant-menu-inline-collapsed > .ant-menu-item {
   padding: 0 15px;
+  font-size: 14px;
 }
 
 .ant-btn {

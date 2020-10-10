@@ -98,7 +98,7 @@ const menuItems = [
 ];
 
 const SideMenu = () => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsCollapsed(!isCollapsed);
@@ -116,9 +116,9 @@ const SideMenu = () => {
           className={`p-4 h-12 flex items-center ${
             isCollapsed ? "justify-center" : "justify-between"
           }`}>
-          <strong className={isCollapsed ? "hidden" : "block"}>
+          <p className={isCollapsed ? "hidden" : "block font-bold text-sm"}>
             OSONAPTEKA
-          </strong>
+          </p>
           <MenuOutlined onClick={toggleMenu} />
         </div>
 

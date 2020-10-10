@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Table,
@@ -25,6 +25,8 @@ import "moment/locale/ru";
 import locale from "antd/es/locale/ru_RU";
 import IconBtn from "../components/IconBtn";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAdmissionsList } from "../store/admission/selectors";
 
 const { Option } = Select;
 
@@ -137,6 +139,15 @@ const tailLayout = {
 export default function Admission() {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const history = useHistory();
+  const [form] = Form.useForm();
+
+  const admissions = useSelector(selectAdmissionsList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("table", admissions);
+  }, []);
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -145,8 +156,21 @@ export default function Admission() {
     setIsModalVisible(false);
   };
 
-  const onFinish = () => {};
-  const onFinishFailed = () => {};
+  const onAdd = (values: any) => {
+    console.log("add these values", values);
+  };
+
+  const onFinish = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        form.resetFields();
+        onAdd(values);
+      })
+      .catch((info) => {
+        console.log("Validation failed:", info);
+      });
+  };
 
   return (
     <div>
@@ -154,23 +178,21 @@ export default function Admission() {
         title='Новое поступление'
         visible={isModalVisible}
         okText='Добавить'
+        onOk={onFinish}
         onCancel={closeModal}>
         <Form
           {...layout}
+          form={form}
           name='basic'
           labelAlign='left'
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}>
+          initialValues={{ remember: true }}>
           <Form.Item
             label='Дата поступления'
             name='receiptDate'
             rules={[
               { required: true, message: "Please input your username!" },
             ]}>
-            <ConfigProvider locale={locale}>
-              <DatePicker placeholder='' className='w-full py-1' />
-            </ConfigProvider>
+            <DatePicker placeholder='' className='w-full py-1' />
           </Form.Item>
           <Form.Item
             label='Накладная №'
@@ -214,7 +236,7 @@ export default function Admission() {
       </div>
       <div>
         <Table
-          dataSource={dataSource}
+          dataSource={admissions}
           columns={columns}
           size='middle'
           onRow={() => ({

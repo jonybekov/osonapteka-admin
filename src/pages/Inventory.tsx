@@ -28,6 +28,15 @@ import { useHistory } from "react-router-dom";
 
 const { Option } = Select;
 
+interface Inventory {
+  key: string | number;
+  status: string;
+  name: string;
+  startDate: string | number;
+  endDate: string | number;
+  comment: string;
+}
+
 const dataSource = [
   {
     key: "1",
@@ -104,18 +113,25 @@ const columns = [
     dataIndex: "action",
     key: "action",
     width: 100,
-    render: () => (
+    render: (_: any, { status }: Inventory) => (
       <div className='flex'>
-        <IconBtn color='primary' title='Изменить' icon={EditOutlined} />
+        <IconBtn
+          color='primary'
+          title='Изменить'
+          icon={EditOutlined}
+          disabled={status !== "warning"}
+        />
         <IconBtn
           color='yellow'
           title='Активировать'
           icon={ThunderboltOutlined}
+          disabled={status !== "warning"}
         />
         <IconBtn
           color='green'
           title='Экспорт в Excel'
           icon={FileExcelOutlined}
+          disabled={status !== "warning"}
         />
       </div>
     ),
